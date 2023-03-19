@@ -1,15 +1,33 @@
-# Generative VR using Three.js, Tone.js and Next.js
+# Generative Data Analytics using Three.js and Next.js with API Endpoint
 
-This is a simple project that demonstrates how to create generative virtual reality using Three.js, Tone.js and Next.js.
+This project is a creative way of visualizing data from an API endpoint using the combination of Three.js and Next.js. The geometric shapes in the visualization change dynamically based on the data retrieved from the API.
+Features
 
-## Installation and Usage
+- Dynamically changing geometric shapes based on data from API endpoint.
+- Interactive 3D visualization using Three.js
+- Server-side rendering with Next.js for fast and responsive visualization.
+- Easy setup and customization.
 
+## Installation
+
+To get started with this project, follow these steps:
 Clone this repository.
-Run npm install to install the dependencies.
-Run npm run dev to start the development server.
-Open http://localhost:3000 in your browser to see the application.
+Install the dependencies using npm install.
+Create a .env.local file in the root of the project and add the API endpoint URL like this:
 
-## How it works
+javascript
 
-The application displays a virtual reality scene that contains a rotating box. The box is created using Three.js and its rotation is updated using the useFrame hook from react-three-fiber.
-Demo.
+NEXT_PUBLIC_API_URL=https://your-api-endpoint-url.com
+
+    Run the project using npm run dev.
+
+    Open your browser and go to http://localhost:3000 to view the visualization.
+
+Usage
+
+Once you have the project running, you can customize the visualization to suit your needs. You can change the shapes, colors, and other properties of the 3D objects by modifying the code in the components/Shape.js file.
+
+You can also change the way the data is retrieved and processed from the API by modifying the code in the pages/index.js file.
+Contributing
+
+Contributions are always welcome! If you find any issues or have any suggestions, please open an issue or create a pull request.
