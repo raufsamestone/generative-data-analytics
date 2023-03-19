@@ -1,6 +1,6 @@
-# Generative VR using Three.js and Next.js
+# Generative VR using Three.js, Tone.js and Next.js
 
-This is a simple project that demonstrates how to create generative virtual reality using Three.js and Next.js.
+This is a simple project that demonstrates how to create generative virtual reality using Three.js, Tone.js and Next.js.
 
 ## Installation and Usage
 
@@ -13,7 +13,3 @@ Open http://localhost:3000 in your browser to see the application.
 
 The application displays a virtual reality scene that contains a rotating box. The box is created using Three.js and its rotation is updated using the useFrame hook from react-three-fiber.
 Demo.
-
-## Roadmap
-
-- API Endpoint - soon

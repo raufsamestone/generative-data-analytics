@@ -1,9 +1,20 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame } from "react-three-fiber";
+import { Canvas, useFrame, useThree } from "react-three-fiber";
 import * as THREE from "three";
 
 const Box = ({ speed }) => {
   const meshRef = useRef();
+  const [color, setColor] = useState(new THREE.Color(0xff0000));
+
+  useEffect(() => {
+    if (speed > 5) {
+      setColor(new THREE.Color(0x00ff00));
+    } else if (speed > 2) {
+      setColor(new THREE.Color(0xffff00));
+    } else {
+      setColor(new THREE.Color(0xff0000));
+    }
+  }, [speed]);
 
   useFrame(() => {
     meshRef.current.rotation.x += speed / 100;
@@ -13,7 +24,7 @@ const Box = ({ speed }) => {
   return (
     <mesh ref={meshRef}>
       <boxBufferGeometry args={[5, 5, 5]} />
-      <meshStandardMaterial color={new THREE.Color(0xff0000)} />
+      <meshStandardMaterial color={color} />
     </mesh>
   );
 };
@@ -32,18 +43,20 @@ const Home = () => {
 
         setSpeed(data.title.length / 10);
         setContent(data.title);
-        console.log(data.title.length);
       } catch (error) {
-        console.error(error);
+        // Show an error message to the user
+        console.error("An error occurred:", error);
+        setContent("An error occurred. Please try again later.");
       }
     };
+
     const getRandomInt = (min, max) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     const intervalId = setInterval(() => {
       fetchData();
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -51,11 +64,10 @@ const Home = () => {
   return (
     <div>
       <div className="content">
-        <h1>{content}</h1>
-        <p>Speed: {speed}</p>
+        <h1>Speed: {speed}</h1>
       </div>
-      <Canvas className="canvas">
-        <ambientLight intensity={2.5} />
+      <Canvas width="1250" height="800" className="canvas">
+        <ambientLight intensity={1.2} />
         <pointLight position={[10, 10, 10]} />
         <Box speed={speed} />
       </Canvas>
@@ -70,12 +82,17 @@ const Home = () => {
       body {
         max-width: 100vw;
         overflow-x: hidden;
+        background:black;
+        color:white
       }
       .canvas {
         margin-top: 20rem;
       }
       .content{ 
         margin:5rem
+      }
+      .content h1{ 
+        text-align:center
       }
       
       `}</style>
