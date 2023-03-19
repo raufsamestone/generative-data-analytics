@@ -20,6 +20,7 @@ const Box = ({ speed }) => {
 
 const Home = () => {
   const [speed, setSpeed] = useState(0);
+  const [content, setContent] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,9 @@ const Home = () => {
           `https://jsonplaceholder.typicode.com/todos/${getRandomInt(1, 200)}`
         );
         const data = await response.json();
+
         setSpeed(data.title.length / 10);
+        setContent(data.title);
         console.log(data.title.length);
       } catch (error) {
         console.error(error);
@@ -47,15 +50,34 @@ const Home = () => {
 
   return (
     <div>
+      <div className="content">
+        <h1>{content}</h1>
+        <p>Speed: {speed}</p>
+      </div>
       <Canvas className="canvas">
         <ambientLight intensity={2.5} />
         <pointLight position={[10, 10, 10]} />
         <Box speed={speed} />
       </Canvas>
       <style>{`
-        .canvas {
-          margin-top: 20rem;
-        }
+        * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      
+      html,
+      body {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+      .canvas {
+        margin-top: 20rem;
+      }
+      .content{ 
+        margin:5rem
+      }
+      
       `}</style>
     </div>
   );
